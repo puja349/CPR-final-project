@@ -14,6 +14,10 @@ void fundamentals(void) {
 
         if (strcmp(buffer2, "q\n") != 0) {
             buffer2[strlen(buffer2) - 1] = '\0'; // Remove newline
+
+             if (strcmp(str, "") == 0 || strspn(str, " ") == strlen(str)) {
+                printf("Warning: blank input\n");
+            } else if (strcmp(str, "q") != 0) {
             // Show the length of the input string
             printf("The length of \"%s\" is %d characters\n", buffer2, (int)strlen(buffer2));
         }
