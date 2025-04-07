@@ -4,29 +4,28 @@
 #define BUFFER_SIZE 80
 
 void fundamentals(void) {
-    /* Version 2: Measuring Strings */
-    printf("*** Start of Measuring Strings Demo ***\n");
-    
-    char str[BUFFER_SIZE];
+    printf("*** Start of Measuring Strings ***\n");
+    char buffer2[BUFFER_SIZE];  // Buffer to store user input
 
     do {
-        // Ask user to input a string
         printf("Type a string (q - to quit):\n");
-        fgets(str, BUFFER_SIZE, stdin);
-        str[strcspn(str, "\n")] = '\0'; // remove newline
+        fgets(buffer2, BUFFER_SIZE, stdin);  // Read input from user including newline
 
-        if (strcmp(str, "") == 0 || strspn(str, " ") == strlen(str)) {
-            printf("Warning: blank input\n");
-        } else if (strcmp(str, "q") != 0) {
-            printf("The length of \"%s\" is %lu characters\n", str, strlen(str));
+        // Check if the input is not "q\n" (user didn't choose to quit)
+        if (strcmp(buffer2, "q\n") != 0) {
+            
+            // Check for blank input (either only newline or all spaces/newline)
+            if (strcmp(buffer2, "\n") == 0 || strspn(buffer2, " \n") == strlen(buffer2)) {
+                printf("Warning: blank input\n");
+            } else {
+                buffer2[strlen(buffer2) - 1] = '\0';  // Remove the trailing newline character
+                printf("The length of \"%s\" is %d characters\n", buffer2, (int)strlen(buffer2));  // Display string length
+            }
         }
+    } while (strcmp(buffer2, "q\n") != 0);  // Loop until the user enters "q"
 
-    } while (strcmp(str, "q") != 0);
-
-    printf("--- End of Measuring Strings ---\n\n");
+    printf("*** End of Measuring Strings ***\n\n");
 }
-
-
 
 
     
